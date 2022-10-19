@@ -5,7 +5,7 @@ public class Container {
     private DbConnectionInterface dbConnection;
 
     private Container() {
-        dbConnection = new DbConnectionSqlite("db");
+        dbConnection = new DbConnectionSqlite("jdbc:sqlite:./database.db");
     }
 
     public static Container getInstance() {
