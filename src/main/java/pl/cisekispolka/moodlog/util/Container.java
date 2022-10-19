@@ -1,4 +1,4 @@
-package pl.cisekispolka;
+package pl.cisekispolka.moodlog.util;
 
 public class Container {
     private static Container instance;
