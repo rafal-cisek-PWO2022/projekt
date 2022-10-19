@@ -1,4 +1,4 @@
-package pl.cisekispolka;
+package pl.cisekispolka.moodlog;
 
 import static org.junit.Assert.assertTrue;
 
