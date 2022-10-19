@@ -4,11 +4,11 @@ public class Container {
     private static Container instance;
     private DbConnectionInterface dbConnection;
 
-    private Container() {
+    private Container() throws Exception {
         dbConnection = new DbConnectionSqlite("jdbc:sqlite:./database.db");
     }
 
-    public static Container getInstance() {
+    public static Container getInstance() throws Exception {
         if (instance == null) {
             instance = new Container();
         }
@@ -16,7 +16,7 @@ public class Container {
         return instance;
     }
 
-    DbConnectionInterface getDbConnection() {
+    public DbConnectionInterface getDbConnection() {
         return dbConnection;
     }
 }

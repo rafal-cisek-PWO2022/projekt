@@ -9,9 +9,10 @@ import java.sql.Statement;
 public class DbConnectionSqlite implements DbConnectionInterface {
     private Connection connection;
 
-    public DbConnectionSqlite(String dbPath) {
+    public DbConnectionSqlite(String dbPath) throws Exception {
         try {
             this.connection = DriverManager.getConnection(dbPath);
+            initDatabse();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -19,14 +20,20 @@ public class DbConnectionSqlite implements DbConnectionInterface {
 
     @Override
     public ResultSet query(String sql) throws Exception {
-        try {
-            Statement statement = this.connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(sql);
+        Statement statement = this.connection.createStatement();
+        ResultSet resultSet = statement.executeQuery(sql);
 
-            return resultSet;
-        } catch (SQLException e) {
-            throw new Exception("Database query error");
-        }
+        return resultSet;
+    }
+
+    private void initDatabse() throws Exception {
+        this.queryNoReturn(DbConnectionSqliteInitcode.code());
+    }
+
+    @Override
+    public void queryNoReturn(String sql) throws Exception {
+        Statement statement = this.connection.createStatement();
+        statement.executeUpdate(sql);
     }
 
 }
