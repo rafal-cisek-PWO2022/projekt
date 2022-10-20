@@ -1,4 +1,4 @@
-package pl.cisekispolka.moodlog.util;
+package pl.cisekispolka.moodlog.util.database;
 
 public class DbConnectionSqliteInitcode {
     static String code() {

@@ -1,4 +1,4 @@
-package pl.cisekispolka.moodlog.util;
+package pl.cisekispolka.moodlog.util.database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

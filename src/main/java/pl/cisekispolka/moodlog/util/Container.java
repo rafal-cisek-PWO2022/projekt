@@ -1,5 +1,8 @@
 package pl.cisekispolka.moodlog.util;
 
+import pl.cisekispolka.moodlog.util.database.DbConnectionInterface;
+import pl.cisekispolka.moodlog.util.database.DbConnectionSqlite;
+
 public class Container {
     private static Container instance;
     private DbConnectionInterface dbConnection;
