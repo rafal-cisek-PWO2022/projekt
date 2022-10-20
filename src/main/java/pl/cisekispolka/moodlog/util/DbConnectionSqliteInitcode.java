@@ -30,6 +30,9 @@ public class DbConnectionSqliteInitcode {
             FOREIGN KEY (`emotion_id`) REFERENCES `emotion`(`id`),
             FOREIGN KEY (`entry_id`) REFERENCES `entry`(`id`)
             );
+
+            CREATE UNIQUE INDEX IF NOT EXISTS `idx_day_date` ON `day`(`date`);
+            CREATE UNIQUE INDEX IF NOT EXISTS `idx_entry_date_entered` ON `entry`(`date_entered`);
             """;
     }
 }
