@@ -8,7 +8,7 @@ public class Container {
     private DbConnectionInterface dbConnection;
 
     private Container() throws Exception {
-        dbConnection = new DbConnectionSqlite("jdbc:sqlite:./database.db");
+        dbConnection = new DbConnectionSqlite("./database.db");
     }
 
     public static Container getInstance() throws Exception {

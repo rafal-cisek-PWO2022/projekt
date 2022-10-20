@@ -1,5 +1,9 @@
 package pl.cisekispolka.moodlog.util.database;
 
+import java.io.IOException;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -8,14 +12,12 @@ import java.sql.Statement;
 
 public class DbConnectionSqlite implements DbConnectionInterface {
     private Connection connection;
+    private String dbPath;
 
     public DbConnectionSqlite(String dbPath) throws Exception {
-        try {
-            this.connection = DriverManager.getConnection(dbPath);
-            initDatabse();
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
+        this.dbPath = dbPath;
+        this.connection = DriverManager.getConnection("jdbc:sqlite:" + this.dbPath);
+        initDatabse();
     }
 
     @Override
@@ -28,6 +30,13 @@ public class DbConnectionSqlite implements DbConnectionInterface {
 
     private void initDatabse() throws Exception {
         this.queryNoReturn(DbConnectionSqliteInitcode.code());
+    }
+
+    public void resetDatabase() throws SQLException, IOException {
+        this.connection.close();
+        Path path = FileSystems.getDefault().getPath(this.dbPath);
+        Files.delete(path);
+        this.connection = DriverManager.getConnection("jdbc:sqlite:" + this.dbPath);
     }
 
     @Override
